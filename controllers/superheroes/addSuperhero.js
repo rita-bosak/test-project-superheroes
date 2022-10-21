@@ -8,7 +8,7 @@ async function addSuperhero(req, res) {
     throw createError(400);
   }
 
-  res.json({ status: "success", code: 201, data: { result } });
+  res.json({ response: { result } });
 }
 
 module.exports = addSuperhero;
