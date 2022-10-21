@@ -6,7 +6,7 @@ async function listSuperheroes(req, res) {
 
   const result = await Superhero.find().skip(skip).limit(limit);
 
-  res.json({ response: { result } });
+  res.json(result);
 }
 
 module.exports = listSuperheroes;

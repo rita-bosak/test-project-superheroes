@@ -7,7 +7,7 @@ async function removeSuperhero(req, res) {
   if (!result) {
     throw createError(404);
   }
-  res.json({ response: { result } });
+  res.json(result);
 }
 
 module.exports = removeSuperhero;

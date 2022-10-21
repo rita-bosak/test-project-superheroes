@@ -12,7 +12,7 @@ const updateSuperhero = async (req, res) => {
     throw createError(404);
   }
 
-  res.json({ response: { result } });
+  res.json(result);
 };
 
 module.exports = updateSuperhero;

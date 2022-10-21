@@ -10,7 +10,7 @@ async function getSuperheroById(req, res) {
     throw createError(404);
   }
 
-  res.json({ response: { result } });
+  res.json(result);
 }
 
 module.exports = getSuperheroById;
