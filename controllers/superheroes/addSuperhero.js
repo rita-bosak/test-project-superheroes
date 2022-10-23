@@ -17,7 +17,7 @@ async function addSuperhero(req, res) {
 
     const imagesURL = path.join("public", "superheroes", originalname);
 
-    const result = await Superhero.create({ ...req.body, imagesURL });
+    const result = await Superhero.create({ ...req.body, images: imagesURL });
 
     res.json({ result });
   } catch (error) {
