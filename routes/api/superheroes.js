@@ -1,5 +1,5 @@
 const express = require("express");
-const { ctrlWrapper, validation } = require("../../middlewares");
+const { ctrlWrapper, validation, upload } = require("../../middlewares");
 const { superheroes: ctrl } = require("../../controllers");
 const { superheroAddSchema, superheroQuerySchema } = require("../../models");
 
@@ -16,6 +16,7 @@ router.get("/:superheroId", ctrlWrapper(ctrl.getSuperheroById));
 router.post(
   "/",
   validation(superheroAddSchema),
+  upload.single("images"),
   ctrlWrapper(ctrl.addSuperhero)
 );
 
