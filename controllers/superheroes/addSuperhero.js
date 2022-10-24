@@ -9,7 +9,12 @@ async function addSuperhero(req, res) {
 
   try {
     const image = await cloudinary.uploader
-      .upload(tempUpload)
+      .upload(tempUpload, {
+        folder: "superheroes",
+        height: 370,
+        width: 280,
+        crop: "fill",
+      })
       .then(({ url }) => {
         fs.unlink(tempUpload);
         return url;
