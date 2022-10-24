@@ -5,6 +5,7 @@ const { createError } = require("../../helpers");
 const { Superhero } = require("../../models");
 
 async function addSuperhero(req, res) {
+  const { nickname } = req.body;
   const { path: tempUpload } = req.file;
 
   try {
@@ -14,15 +15,16 @@ async function addSuperhero(req, res) {
         height: 370,
         width: 280,
         crop: "fill",
+        tags: nickname,
       })
-      .then(({ url }) => {
+      .then(({ url, tags }) => {
         fs.unlink(tempUpload);
-        return url;
+        return { url, tags };
       });
 
     const result = await Superhero.create({
       ...req.body,
-      images: image,
+      images: [image],
     });
 
     res.json({ result });
