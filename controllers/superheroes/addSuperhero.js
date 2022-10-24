@@ -7,20 +7,22 @@ const { Superhero } = require("../../models");
 
 async function addSuperhero(req, res) {
   const { nickname } = req.body;
-  const { path: tempUpload } = req.file;
+  const files = req.files;
   const imagesArray = [];
 
   try {
-    const resultUpload = await cloudinaryUpload(tempUpload, {
-      folder: "superheroes",
-      height: 370,
-      width: 280,
-      crop: "fill",
-      tags: nickname,
-    });
+    for (const file of files) {
+      const resultUpload = await cloudinaryUpload(file.path, {
+        folder: "superheroes",
+        height: 370,
+        width: 280,
+        crop: "fill",
+        tags: nickname,
+      });
 
-    fs.unlink(tempUpload);
-    imagesArray.push(resultUpload);
+      fs.unlink(file.path);
+      imagesArray.push(resultUpload);
+    }
 
     const result = await Superhero.create({
       ...req.body,
@@ -29,8 +31,6 @@ async function addSuperhero(req, res) {
 
     res.json({ result });
   } catch (error) {
-    await fs.unlink(tempUpload);
-
     throw createError(400, `${error}`);
   }
 }
