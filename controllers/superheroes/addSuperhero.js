@@ -1,25 +1,24 @@
 const fs = require("fs/promises");
-const path = require("path");
+const cloudinary = require("cloudinary").v2;
 
 const { createError } = require("../../helpers");
 const { Superhero } = require("../../models");
 
-const imagesDir = path.join(__dirname, "../../", "public", "superheroes");
-
 async function addSuperhero(req, res) {
-  const { nickname } = req.body;
-  const { path: tempUpload, originalname } = req.file;
-  const imageName = `${nickname}_${originalname}`;
+  const { path: tempUpload } = req.file;
 
   try {
-    const resultUpload = path.join(imagesDir, imageName);
-    await fs.rename(tempUpload, resultUpload);
-
-    const imagesURL = path.join("public", "superheroes", originalname);
+    const image = await cloudinary.uploader
+      .upload(tempUpload)
+      .then(({ url }) => {
+        fs.unlink(tempUpload);
+        return url;
+      })
+      .catch((error) => console.log(error));
 
     const result = await Superhero.create({
       ...req.body,
-      images: imagesURL,
+      images: image,
     });
 
     res.json({ result });

@@ -13,12 +13,7 @@ router.get(
 
 router.get("/:superheroId", ctrlWrapper(ctrl.getSuperheroById));
 
-router.post(
-  "/",
-  validation(superheroAddSchema),
-  upload.single("images"),
-  ctrlWrapper(ctrl.addSuperhero)
-);
+router.post("/", upload.single("images"), ctrlWrapper(ctrl.addSuperhero));
 
 router.delete("/:superheroId", ctrlWrapper(ctrl.removeSuperhero));
 
