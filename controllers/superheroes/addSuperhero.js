@@ -13,8 +13,7 @@ async function addSuperhero(req, res) {
       .then(({ url }) => {
         fs.unlink(tempUpload);
         return url;
-      })
-      .catch((error) => console.log(error));
+      });
 
     const result = await Superhero.create({
       ...req.body,
@@ -24,7 +23,7 @@ async function addSuperhero(req, res) {
     res.json({ result });
   } catch (error) {
     await fs.unlink(tempUpload);
-    throw createError(400);
+    throw createError(400, `${error}`);
   }
 }
 
