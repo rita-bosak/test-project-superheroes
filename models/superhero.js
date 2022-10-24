@@ -37,6 +37,7 @@ const superheroAddSchema = Joi.object({
   origin_description: Joi.string().required(),
   superpowers: Joi.string().required(),
   catch_phrase: Joi.string().required(),
+  images: Joi.object(),
 });
 
 const superheroQuerySchema = Joi.object({
