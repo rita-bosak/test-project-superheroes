@@ -2,9 +2,9 @@ const { Superhero } = require("../../models");
 const { createError } = require("../../helpers");
 
 async function getSuperheroById(req, res) {
-  const { superheroId } = req.params;
+  const { id } = req.params;
 
-  const result = await Superhero.findById(superheroId);
+  const result = await Superhero.findById(id);
 
   if (!result) {
     throw createError(404);

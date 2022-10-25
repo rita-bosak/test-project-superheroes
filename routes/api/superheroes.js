@@ -11,7 +11,7 @@ router.get(
   ctrlWrapper(ctrl.listSuperheroes)
 );
 
-router.get("/:superheroId", ctrlWrapper(ctrl.getSuperheroById));
+router.get("/:id", ctrlWrapper(ctrl.getSuperheroById));
 
 router.post("/", upload.array("images"), ctrlWrapper(ctrl.addSuperhero));
 
