@@ -6,8 +6,8 @@ const { createError } = require("./createError");
 const cloudinaryUpload = async (filePath, config) =>
   await cloudinary.uploader
     .upload(filePath, config)
-    .then(({ url, tags }) => {
-      return { url, tags };
+    .then(({ url, tags, public_id: publicId }) => {
+      return { url, tags, publicId };
     })
     .catch((error) => {
       fs.unlink(filePath);

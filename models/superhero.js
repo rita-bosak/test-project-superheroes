@@ -23,7 +23,7 @@ const superheroSchema = Schema(
       type: String,
       required: true,
     },
-    images: [{ url: String, tags: Array }],
+    images: [{ url: String, tags: Array, publicId: String }],
   },
   { versionKey: false, timestamps: true }
 );
