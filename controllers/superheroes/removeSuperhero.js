@@ -1,13 +1,21 @@
 const { Superhero } = require("../../models");
 const { createError } = require("../../helpers");
+const { cloudinaryDelete } = require("../../helpers");
 
 async function removeSuperhero(req, res) {
   const { superheroId } = req.params;
-  const result = await Superhero.findByIdAndRemove(superheroId);
-  if (!result) {
+  const imagesIds = [];
+
+  const superhero = await Superhero.findByIdAndRemove(superheroId);
+
+  if (!superhero) {
     throw createError(404);
   }
-  res.json(result);
+
+  superhero.images.forEach((image) => imagesIds.push(image.publicId));
+  await cloudinaryDelete(imagesIds);
+
+  res.json(superhero);
 }
 
 module.exports = removeSuperhero;
