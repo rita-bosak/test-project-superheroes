@@ -17,9 +17,13 @@ async function removeSuperheroImage(req, res) {
 
   const updatedImages = images.filter((image) => image.publicId !== publicId);
 
-  const result = await Superhero.findByIdAndUpdate(superheroId, {
-    images: updatedImages,
-  });
+  const result = await Superhero.findByIdAndUpdate(
+    superheroId,
+    {
+      images: updatedImages,
+    },
+    { new: true }
+  );
 
   if (!result) {
     throw createError(400);
