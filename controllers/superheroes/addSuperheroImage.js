@@ -4,7 +4,6 @@ const { cloudinaryUpload } = require("../../helpers");
 const { Superhero } = require("../../models");
 
 const cloudinaryUploadOptions = {
-  folder: "superheroes",
   height: 370,
   width: 280,
   crop: "fill",
