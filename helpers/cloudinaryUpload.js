@@ -3,6 +3,12 @@ const fs = require("fs/promises");
 
 const { createError } = require("./createError");
 
+const cloudinaryUploadOptions = {
+  height: 270,
+  width: 225,
+  crop: "fill",
+};
+
 const cloudinaryUpload = async (filePath, config) => {
   try {
     const uploadedImage = await cloudinary.uploader.upload(filePath, config);
@@ -19,4 +25,4 @@ const cloudinaryUpload = async (filePath, config) => {
   }
 };
 
-module.exports = cloudinaryUpload;
+module.exports = { cloudinaryUpload, cloudinaryUploadOptions };

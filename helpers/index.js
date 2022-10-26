@@ -1,5 +1,13 @@
 const createError = require("./createError");
-const cloudinaryUpload = require("./cloudinaryUpload");
+const {
+  cloudinaryUpload,
+  cloudinaryUploadOptions,
+} = require("./cloudinaryUpload");
 const cloudinaryDelete = require("./cloudinaryDelete");
 
-module.exports = { createError, cloudinaryUpload, cloudinaryDelete };
+module.exports = {
+  createError,
+  cloudinaryUpload,
+  cloudinaryUploadOptions,
+  cloudinaryDelete,
+};

@@ -1,4 +1,4 @@
-const { cloudinaryUpload } = require("../../helpers");
+const { cloudinaryUpload, cloudinaryUploadOptions } = require("../../helpers");
 const { createError } = require("../../helpers");
 
 const { Superhero } = require("../../models");
@@ -11,9 +11,7 @@ async function addSuperhero(req, res) {
   try {
     for (const file of files) {
       const resultUpload = await cloudinaryUpload(file.path, {
-        height: 370,
-        width: 280,
-        crop: "fill",
+        ...cloudinaryUploadOptions,
         tags: nickname,
       });
 
