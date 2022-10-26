@@ -11,6 +11,7 @@ const cloudinaryUploadOptions = {
 
 async function addSuperheroImage(req, res) {
   const { superheroId } = req.params;
+
   const { path } = req.file;
 
   const superhero = await Superhero.findById(superheroId);
@@ -25,9 +26,13 @@ async function addSuperheroImage(req, res) {
       tags: superhero.nickname,
     });
 
-    const result = await Superhero.findByIdAndUpdate(superheroId, {
-      images: [...superhero.images, newImage],
-    });
+    const result = await Superhero.findByIdAndUpdate(
+      superheroId,
+      {
+        images: [...superhero.images, newImage],
+      },
+      { new: true }
+    );
 
     res.json(result);
   } catch (error) {
