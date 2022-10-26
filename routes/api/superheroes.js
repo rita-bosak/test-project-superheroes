@@ -24,13 +24,13 @@ router.put(
 );
 
 router.patch(
-  "/:superheroId/images",
+  "/:superheroId/images/add",
   upload.single("image"),
   ctrlWrapper(ctrl.addSuperheroImage)
 );
 
 router.patch(
-  "/:superheroId/images/:imageId",
+  "/:superheroId/images/delete",
   ctrlWrapper(ctrl.removeSuperheroImage)
 );
 

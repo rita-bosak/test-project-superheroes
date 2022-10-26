@@ -4,7 +4,8 @@ const { cloudinaryDelete } = require("../../helpers");
 const { Superhero } = require("../../models");
 
 async function removeSuperheroImage(req, res) {
-  const { superheroId, imageId } = req.params;
+  const { superheroId } = req.params;
+  const { publicId } = req.query;
 
   const superhero = await Superhero.findById(superheroId);
 
@@ -14,9 +15,7 @@ async function removeSuperheroImage(req, res) {
 
   const { images } = superhero;
 
-  const imageToDelete = images.find((image) => image._id === imageId);
-
-  const updatedImages = images.filter((image) => image !== imageToDelete);
+  const updatedImages = images.filter((image) => image.publicId !== publicId);
 
   const result = await Superhero.findByIdAndUpdate(superheroId, {
     images: updatedImages,
@@ -26,7 +25,7 @@ async function removeSuperheroImage(req, res) {
     throw createError(400);
   }
 
-  await cloudinaryDelete([imageToDelete.publicId]);
+  await cloudinaryDelete([publicId]);
 
   res.json(result);
 }
