@@ -30,7 +30,7 @@ router.patch(
 );
 
 router.patch(
-  "/:superheroId/images/delete",
+  "/:superheroId/images/delete/:publicId",
   ctrlWrapper(ctrl.removeSuperheroImage)
 );
 

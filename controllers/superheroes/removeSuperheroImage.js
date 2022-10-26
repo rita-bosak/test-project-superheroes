@@ -4,8 +4,7 @@ const { cloudinaryDelete } = require("../../helpers");
 const { Superhero } = require("../../models");
 
 async function removeSuperheroImage(req, res) {
-  const { superheroId } = req.params;
-  const { publicId } = req.query;
+  const { superheroId, publicId } = req.params;
 
   const superhero = await Superhero.findById(superheroId);
 

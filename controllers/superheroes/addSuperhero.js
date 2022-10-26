@@ -11,7 +11,6 @@ async function addSuperhero(req, res) {
   try {
     for (const file of files) {
       const resultUpload = await cloudinaryUpload(file.path, {
-        folder: "superheroes",
         height: 370,
         width: 280,
         crop: "fill",
