@@ -18,8 +18,8 @@ router.get("/:id", ctrlWrapper(ctrl.getSuperheroById));
 
 router.post(
   "/",
-  validation(addSuperheroSchema),
   upload.array("images"),
+  validation(addSuperheroSchema),
   ctrlWrapper(ctrl.addSuperhero)
 );
 
