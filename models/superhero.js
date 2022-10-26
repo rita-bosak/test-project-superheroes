@@ -28,20 +28,20 @@ const superheroSchema = Schema(
   { versionKey: false, timestamps: true }
 );
 
-const superheroAddSchema = Joi.object({
+const addSuperheroSchema = Joi.object({
   nickname: Joi.string().required(),
   real_name: Joi.string().required(),
   origin_description: Joi.string().required(),
   superpowers: Joi.string().required(),
   catch_phrase: Joi.string().required(),
-  images: Joi.object(),
+  images: Joi.array(),
 });
 
-const superheroQuerySchema = Joi.object({
+const addSuperheroQuerySchema = Joi.object({
   page: Joi.number().min(1),
   limit: Joi.number().min(1),
 });
 
 const Superhero = model("superheroes", superheroSchema);
 
-module.exports = { Superhero, superheroAddSchema, superheroQuerySchema };
+module.exports = { Superhero, addSuperheroSchema, addSuperheroQuerySchema };

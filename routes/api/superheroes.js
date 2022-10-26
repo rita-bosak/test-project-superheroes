@@ -1,13 +1,13 @@
 const express = require("express");
 const { ctrlWrapper, validation, upload } = require("../../middlewares");
 const { superheroes: ctrl } = require("../../controllers");
-const { superheroAddSchema, superheroQuerySchema } = require("../../models");
+const { addSuperheroSchema, addSuperheroQuerySchema } = require("../../models");
 
 const router = express.Router();
 
 router.get(
   "/",
-  validation(superheroQuerySchema, "query"),
+  validation(addSuperheroQuerySchema, "query"),
   ctrlWrapper(ctrl.listSuperheroes)
 );
 
@@ -19,8 +19,19 @@ router.delete("/:superheroId", ctrlWrapper(ctrl.removeSuperhero));
 
 router.put(
   "/:superheroId",
-  validation(superheroAddSchema),
+  validation(addSuperheroSchema),
   ctrlWrapper(ctrl.updateSuperhero)
+);
+
+router.patch(
+  "/:superheroId/images",
+  upload.single("image"),
+  ctrlWrapper(ctrl.addSuperheroImage)
+);
+
+router.patch(
+  "/:superheroId/images/:publicId",
+  ctrlWrapper(ctrl.removeSuperheroImage)
 );
 
 module.exports = router;

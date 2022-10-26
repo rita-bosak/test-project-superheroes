@@ -1,5 +1,3 @@
-const fs = require("fs/promises");
-
 const { cloudinaryUpload } = require("../../helpers");
 const { createError } = require("../../helpers");
 
@@ -20,7 +18,6 @@ async function addSuperhero(req, res) {
         tags: nickname,
       });
 
-      fs.unlink(file.path);
       imagesArray.push(resultUpload);
     }
 
