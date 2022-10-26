@@ -1,11 +1,11 @@
 const {
   Superhero,
   addSuperheroSchema,
-  addSuperheroQuerySchema,
+  listSuperheroesQuerySchema,
 } = require("./superhero");
 
 module.exports = {
   Superhero,
   addSuperheroSchema,
-  addSuperheroQuerySchema,
+  listSuperheroesQuerySchema,
 };

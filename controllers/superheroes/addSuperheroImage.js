@@ -29,7 +29,7 @@ async function addSuperheroImage(req, res) {
     const result = await Superhero.findByIdAndUpdate(
       superheroId,
       {
-        images: [...superhero.images, newImage],
+        images: [newImage, ...superhero.images],
       },
       { new: true }
     );

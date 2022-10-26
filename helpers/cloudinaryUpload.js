@@ -7,11 +7,11 @@ const cloudinaryUpload = async (filePath, config) => {
   try {
     const uploadedImage = await cloudinary.uploader.upload(filePath, config);
 
-    const { url, tags, public_id: publicId } = uploadedImage;
+    const { url, tags, public_id: publicId, width, height } = uploadedImage;
 
     fs.unlink(filePath);
 
-    return { url, tags, publicId };
+    return { url, tags, publicId, width, height };
   } catch (error) {
     fs.unlink(filePath);
 

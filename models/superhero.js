@@ -23,7 +23,15 @@ const superheroSchema = Schema(
       type: String,
       required: true,
     },
-    images: [{ url: String, tags: Array, publicId: String }],
+    images: [
+      {
+        url: String,
+        tags: Array,
+        publicId: String,
+        width: String,
+        height: String,
+      },
+    ],
   },
   { versionKey: false, timestamps: true }
 );
@@ -37,11 +45,15 @@ const addSuperheroSchema = Joi.object({
   images: Joi.array(),
 });
 
-const addSuperheroQuerySchema = Joi.object({
+const listSuperheroesQuerySchema = Joi.object({
   page: Joi.number().min(1),
   limit: Joi.number().min(1),
 });
 
 const Superhero = model("superheroes", superheroSchema);
 
-module.exports = { Superhero, addSuperheroSchema, addSuperheroQuerySchema };
+module.exports = {
+  Superhero,
+  addSuperheroSchema,
+  listSuperheroesQuerySchema,
+};
