@@ -4,9 +4,11 @@ async function listSuperheroes(req, res) {
   const { page = 1, limit = 5 } = req.query;
   const skip = (page - 1) * limit;
 
-  const result = await Superhero.find().skip(skip).limit(limit);
+  const collectionLength = await Superhero.estimatedDocumentCount();
 
-  res.json(result);
+  const superheroes = await Superhero.find().skip(skip).limit(limit);
+
+  res.json({ collectionLength, superheroes });
 }
 
 module.exports = listSuperheroes;
