@@ -2,7 +2,7 @@ const listSuperheroes = require("./listSuperheroes");
 const getSuperheroById = require("./getSuperheroById");
 const removeSuperhero = require("./removeSuperhero");
 const addSuperhero = require("./addSuperhero");
-const updateSuperhero = require("./updateSuperhero");
+const updateSuperheroInfo = require("./updateSuperheroInfo");
 const addSuperheroImage = require("./addSuperheroImage");
 const removeSuperheroImage = require("./removeSuperheroImage");
 
@@ -11,7 +11,7 @@ module.exports = {
   getSuperheroById,
   removeSuperhero,
   addSuperhero,
-  updateSuperhero,
+  updateSuperheroInfo,
   addSuperheroImage,
   removeSuperheroImage,
 };

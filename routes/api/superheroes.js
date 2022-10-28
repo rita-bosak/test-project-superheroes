@@ -25,10 +25,9 @@ router.post(
 
 router.delete("/:superheroId", ctrlWrapper(ctrl.removeSuperhero));
 
-router.put(
-  "/:superheroId",
-  validation(addSuperheroSchema),
-  ctrlWrapper(ctrl.updateSuperhero)
+router.patch(
+  "/:superheroId/edit/:property",
+  ctrlWrapper(ctrl.updateSuperheroInfo)
 );
 
 router.patch(
